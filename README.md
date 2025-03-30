@@ -3,7 +3,8 @@
 A simple web dashboard to view Synack target summaries, view target details (including scope and rules), and automate registration for available targets you qualify for. This tool uses a Node.js (Express) proxy server to handle API requests and CORS, with a vanilla HTML/CSS/JavaScript frontend.
 * **Credits:** Google Gemini Advanced 2.5 Pro, and my subpar manipulation skills. 
 
-<img width="1960" alt="image" src="https://github.com/user-attachments/assets/d9f4a3a5-e45c-4c81-8c20-f99995f597f2" />
+<img width="1904" alt="image" src="https://github.com/user-attachments/assets/e168ac86-2e09-41fd-843f-b54d57d42fa9" />
+
 
 * Clicking on 'Register Available Targets' loops through all Available ones, and registers automatically: 
 <img width="1945" alt="image" src="https://github.com/user-attachments/assets/8f9c0f0f-8f43-465f-9cf7-1f8846e5d432" />
@@ -28,16 +29,21 @@ A simple web dashboard to view Synack target summaries, view target details (inc
 
 1.  **Get the Files:**
     * Clone the repository: `git clone <repository-url>`
-    * OR Download the files (`proxy.js`, `index.html`, `marked.min.js`) manually.
-2.  **Place Files:** Ensure `proxy.js`, `index.html`, and `marked.min.js` are all in the same project directory.
-3.  **Install Dependencies:**
+    * OR Download the files (`proxy.js`, `index.html`, `styles.css`, `main.js`, `marked.min.js`) manually.
+2.  **Place Files:** Ensure `proxy.js`, `index.html`, `styles.css`, `main.js`, and `marked.min.js` are all in the same project directory.
+3.  **Initialize Node.js Project:**
     * Open your terminal or command prompt.
     * Navigate (`cd`) into the project directory.
-    * Run the following command to install the necessary Node.js packages for the proxy server:
+    * Run the following command to create a `package.json` file (the `-y` flag accepts default settings):
+        ```bash
+        npm init -y
+        ```
+4.  **Install Dependencies:**
+    * In the same terminal window, run the following command to install the necessary Node.js packages for the proxy server:
         ```bash
         npm install express node-fetch@2
         ```
-        *(This uses `node-fetch` version 2 for compatibility with the `require` syntax used in `proxy.js`)*
+        *(This uses `node-fetch` version 2 for CommonJS `require` compatibility and saves `express` and `node-fetch` as dependencies in your `package.json` file).*
 
 ## Running the Application
 
@@ -50,7 +56,7 @@ You need to run **two** processes simultaneously in separate terminals from your
         ```
     * This server listens on `http://localhost:3000` by default and handles communication with the Synack API. Keep this terminal window open.
 
-2.  **Serve the Frontend (HTML/JS/CSS):**
+2.  **Serve the Frontend (HTML/CSS/JS):**
     * Open a **new** terminal window in the same project directory.
     * Use a simple HTTP server. Here are common options:
         * **Using Python 3:**
@@ -75,27 +81,32 @@ You need to run **two** processes simultaneously in separate terminals from your
     * Paste and run this command: `sessionStorage.getItem('shared-session-com.synack.accessToken')`
     * Copy the long token string that is outputted (without the quotes).
 2.  **Enter Token:** Paste the copied token into the "Enter Authorization Token" input field on the dashboard.
-3.  **Fetch Summary:** Click the "Fetch Summary" button. The table should populate with your registered targets.
-4.  **View Details:** Click the "Details" button in any row to load that target's details into the right-hand pane. Click the '✕' button on the pane to close it.
+3.  **Fetch Summary:** Click the "Fetch Summary" button to load your registered targets.
+4.  **View Details:** Click the "Details" button on any row to see specific target information in the right-hand pane. Click the '✕' button on the pane to close it.
 5.  **Register Targets:**
     * Click the "Register Available Targets" button.
     * The tool will fetch all unregistered targets via the proxy.
-    * It will then filter these based on the `passed_assessments` array defined near the top of the `<script>` block in `index.html` (customize this array if needed!).
+    * It will then filter these based on the `passed_assessments` array defined near the top of `main.js` (customize this array if needed!).
     * It will attempt to register for each filtered target one by one.
     * Progress will be displayed in the log area that appears below the controls.
     * Click the '✕' button on the log area to close it when finished.
 6.  **Interact with Table:**
     * Use the "Show Columns" checkboxes to toggle column visibility.
-    * Use the "Search targets..." input to filter the summary table by text.
+    * Use the "Search loaded targets..." input to filter the summary table by text.
     * Click on sortable column headers (like Name, Codename, Category, etc.) to sort the table.
+7.  **Toggle Theme:** Click the "Toggle Theme" button to switch between light and dark modes. Your preference is saved locally.
 
 ## Files
 
-* `index.html`: Contains the frontend HTML structure, CSS styling, and all client-side JavaScript logic.
-* `proxy.js`: The Node.js Express server acting as a middleware/proxy to handle Synack API calls and manage CORS headers. Requires `express` and `node-fetch`.
-* `marked.min.js`: The Marked.js library (v4+) used by `index.html` to render Markdown content from the API responses. Must be present locally.
-* `package.json`, `package-lock.json` (Generated): Standard Node.js files managing project dependencies.
-* `node_modules/` (Generated): Directory containing the downloaded Node.js dependencies (`express`, `node-fetch`). **Add this directory to your `.gitignore` file if using Git.**
+*(Updated Files Section)*
+
+* `index.html`: The main HTML file providing the page structure. Links to `styles.css` and `main.js`.
+* `styles.css`: Contains all the CSS rules for styling the dashboard, including light and dark themes via variables.
+* `main.js`: Contains all the client-side JavaScript logic for fetching data, manipulating the DOM, handling events (button clicks, sorting, filtering), theme toggling, and the registration process.
+* `proxy.js`: The Node.js Express server acting as a middleware/proxy to handle Synack API requests and manage CORS headers. Requires `express` and `node-fetch`.
+* `marked.min.js`: The Marked.js library (v4+) used by `main.js` to render Markdown content from the API responses. Must be present locally.
+* `package.json`, `package-lock.json` (Generated): Standard Node.js files managing project dependencies (`express`, `node-fetch`).
+* `node_modules/` (Generated): Directory containing the downloaded Node.js dependencies. **Add this directory to your `.gitignore` file if using Git.**
 
 ## Notes & Disclaimer
 
