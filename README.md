@@ -3,6 +3,10 @@
 A simple web dashboard to view Synack target summaries, view target details (including scope and rules), and automate registration for available targets you qualify for. This tool uses a Node.js (Express) proxy server to handle API requests and CORS, with a vanilla HTML/CSS/JavaScript frontend.
 * **Credits:** Google Gemini Advanced 2.5 Pro, and my subpar manipulation skills. 
 
+<img width="1960" alt="image" src="https://github.com/user-attachments/assets/d9f4a3a5-e45c-4c81-8c20-f99995f597f2" />
+
+* Clicking on 'Register Available Targets' loops through all Available ones, and registers automatically: 
+<img width="1945" alt="image" src="https://github.com/user-attachments/assets/8f9c0f0f-8f43-465f-9cf7-1f8846e5d432" />
 
 ## Features
 
