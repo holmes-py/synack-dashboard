@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synack Targets Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="marked.min.js"></script>
+</head>
+<body>
+    <div class="controls-container">
+         <h2>Synack Target Dashboard</h2>
+         <div class="controls-row">
+             <input type="text" id="token" placeholder="Enter Authorization Token">
+             <button onclick="fetchData()" title="Fetch currently registered targets">Fetch Summary</button>
+             <input type="text" id="search" class="search-box" placeholder="Search loaded targets...">
+             <button id="registerTargetsBtn" onclick="registerAllTargets()" title="Register all available targets you qualify for">Register Available Targets</button>
+             <button id="themeToggleBtn" title="Toggle Dark/Light Mode" style="margin-left: auto;">Toggle Theme</button>
+         </div>
+         <div id="registrationLogContainer"></div>
+    </div>
+
+    <div class="main-layout">
+        <div class="table-pane">
+             <div class="column-filter" id="columnFilterControls"><strong>Show Columns:</strong></div>
+             <div class="table-wrapper"><table id="targetTable"><thead><tr></tr></thead><tbody></tbody></table></div>
+        </div>
+        <div class="details-pane" id="detailsPane"><div class="status-message">Select a target's details to view them here.</div></div>
+    </div>
+
+    <script src="main.js" defer></script>
+</body>
+</html>
